@@ -13,12 +13,15 @@
 #include <stdlib.h>
 #include "get_next_line.h"
 
+//freeing the static variable and returning the read line
 void	*get_result(char **readbuffer, char *result)
 {
 	free(*readbuffer);
 	*readbuffer = NULL;
 	return (result);
 }
+
+//Below: Functions from libft for usage in this project
 
 char	*ft_strchr(const char *s, int c)
 {
