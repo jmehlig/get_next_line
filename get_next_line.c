@@ -12,6 +12,7 @@
 
 #include "get_next_line.h"
 
+//actually writing the rightly cut line to a variable
 static char	*ft_new_line(char *readbuffer)
 {
 	char	*new_line;
@@ -33,6 +34,7 @@ static char	*ft_new_line(char *readbuffer)
 	return (new_line);
 }
 
+//sets the pointer of the static variable to the new line
 static char	*rearrenge_buffer(char *readbuffer, int len)
 {
 	char	*new_readbuffer;
@@ -53,6 +55,10 @@ static char	*rearrenge_buffer(char *readbuffer, int len)
 	return (new_readbuffer);
 }
 
+//the static variable readbuffer is the pointer inside the file
+//for the first call of the function it has to be allocated
+//gives the read line to the buffer, if '\n' is the case it cuts everything from the new line
+//and rearranges the buffer
 static char	*print_line(char *line)
 {
 	static char	*readbuffer;
@@ -80,6 +86,8 @@ static char	*print_line(char *line)
 		return (get_result(&readbuffer, result));
 }
 
+//reads from the file with descriptor fd till '\n' or EOF are reached
+//the complete line gets stored in line
 char	*read_next_line(int fd, char *line, char *buffer, int bytesread)
 {
 	while (bytesread > 0)
@@ -101,6 +109,7 @@ char	*read_next_line(int fd, char *line, char *buffer, int bytesread)
 	return (print_line(line));
 }
 
+// reads one line of a file, stops if '\n' or EOF is reached
 char	*get_next_line(int fd)
 {
 	char		*line;
